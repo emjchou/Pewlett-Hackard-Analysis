@@ -188,5 +188,90 @@ ORDER BY de.dept_no;
 --above, we used COUNT instead of SUM because the employee numbers would have just been added
 --SUM adds all employee numbers together
 --COUNT counts the number of employee numbers (thus the number of employees in the list)
-SELECT * FROM employee_by_dept
+SELECT * FROM employee_by_dept;
+
+--create a list for employee info for retiring employees only
+--employee number, last name, first name, gender, salary
+
+--check the to_date column to see if it aligns with employment date
+SELECT * FROM salaries
+ORDER BY to_date DESC;
+--from above, the to_date is not up-to-date. then we need to use the to_date from dept_emp table
+
+SELECT e.emp_no, e.first_name, e.last_name, e.gender,
+	s.salary,
+	de.to_date
+INTO emp_info
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+INNER JOIN dept_emp as de
+ON (e.emp_no=de.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+AND (de.to_date='9999-01-01');
+
+--make management table
+--list of managers per department
+SELECT dm.dept_no,
+	d.dept_name,
+	dm.emp_no,
+	ce.last_name,
+	ce.first_name,
+	dm.from_date,
+	dm.to_date
+INTO manager_info
+FROM dept_manager as dm
+INNER JOIN departments AS d
+ON (dm.dept_no=d.dept_no)
+INNER JOIN current_emp AS ce
+ON (dm.emp_no = ce.emp_no);
+
+SELECT * FROM manager_info;
+
+--create department retirees list
+SELECT ce.emp_no,
+	ce.first_name,
+	ce.last_name,
+	d.dept_name
+INTO dept_info
+FROM current_emp as ce
+	INNER JOIN dept_emp AS de
+	ON (ce.emp_no=de.emp_no)
+	INNER JOIN departments AS d
+	ON (de.dept_no=d.dept_no);
+	
+--check table
+SELECT * FROM dept_info;	
+
+--create a query that will return info for sales department:
+--employee numbers, employee first name, employee last name, employee department name
+SELECT e.emp_no,
+	e.first_name,
+	e.last_name,
+	d.dept_name
+--INTO sales_info
+FROM employees AS e
+	INNER JOIN dept_emp as de
+	ON (e.emp_no = de.emp_no)
+	INNER JOIN departments as d
+	ON (de.dept_no = d.dept_no)
+WHERE d.dept_name ='Sales';
+	
+--new query for sales and development teams
+SELECT e.emp_no,
+	e.first_name,
+	e.last_name,
+	d.dept_name
+--INTO sales_development_info
+FROM employees AS e
+	INNER JOIN dept_emp as de
+	ON (e.emp_no = de.emp_no)
+	INNER JOIN departments as d
+	ON (de.dept_no = d.dept_no)
+WHERE d.dept_name IN ('Sales', 'Development');
+	
+
+
+
 
