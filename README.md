@@ -41,12 +41,12 @@ SELECT SUM(count) FROM retiring_titles
 ![sum of retiring employees](images/mentorship_by_title.PNG)
 
 Number of employees eligible for retirement by title:
-![employees retiring by title](images/retirement_by_title.png)
+![employees retiring by title](images/retirement_by_title.PNG)
 
 Count of employees eligible for mentorship by title:
 SELECT COUNT(emp_no), title FROM mentorship_eligibility
 GROUP BY title;
-![employees eligible for mentorship by title](images/mentorship_by_title.png)
+![employees eligible for mentorship by title](images/mentorship_by_title.PNG)
 
 ### Addressing Questions
 1. Who will be retiring within the next few years?
