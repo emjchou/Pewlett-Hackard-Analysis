@@ -37,7 +37,7 @@ Furthermore, a small table summarizing the count of eligible employees for mento
 Answering the questions proposed in the Overview will use the following additional Queries/charts:
 
 Total number of employees eligible for retirement:
-	SELECT SUM(count) FROM retiring_titles
+- SELECT SUM(count) FROM retiring_titles
 
 ![sum of retiring employees](images/mentorship_by_title.PNG)
 
@@ -46,8 +46,8 @@ Number of employees eligible for retirement by title:
 ![employees retiring by title](images/retirement_by_title.PNG)
 
 Count of employees eligible for mentorship by title:
-	SELECT COUNT(emp_no), title FROM mentorship_eligibility
-	GROUP BY title;
+- SELECT COUNT(emp_no), title FROM mentorship_eligibility
+- GROUP BY title;
 
 ![employees eligible for mentorship by title](images/mentorship_by_title.PNG)
 
