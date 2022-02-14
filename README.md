@@ -38,15 +38,15 @@ Answering the questions proposed in the Overview will use the following addition
 
 Total number of employees eligible for retirement:
 SELECT SUM(count) FROM retiring_titles
-![sum of retiring employees](/images/total_retirement_employees.png)
+![sum of retiring employees](images/mentorship_by_title.PNG)
 
 Number of employees eligible for retirement by title:
-![employees retiring by title](/images/retirement_by_title.png)
+![employees retiring by title](images/retirement_by_title.png)
 
 Count of employees eligible for mentorship by title:
 SELECT COUNT(emp_no), title FROM mentorship_eligibility
 GROUP BY title;
-![employees eligible for mentorship by title](/images/mentorship_by_title.png)
+![employees eligible for mentorship by title](images/mentorship_by_title.png)
 
 ### Addressing Questions
 1. Who will be retiring within the next few years?
